@@ -1,6 +1,17 @@
+"use client";
 import Line from "@/components/Shared/Line";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { getProductList } from "@/store/state/ProductSlice/thunk";
+import { useEffect } from "react";
 
 export default function Catalog() {
+  const dispatch = useAppDispatch();
+  const product = useAppSelector((state) => state.product.getProductListState);
+
+  useEffect(() => {
+    dispatch(getProductList());
+  }, []);
+  console.log(product.data?.items , "cvans")
   return (
     <div className="flex flex-col gap-4 font-bold">
       <Line title="Katalog" />
