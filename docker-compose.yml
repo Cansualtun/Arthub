@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ozkamci-web
+    restart: unless-stopped
+    ports:
+      - 3310:3000
+    volumes:
+      - /opt/ozkamci/web:/web
