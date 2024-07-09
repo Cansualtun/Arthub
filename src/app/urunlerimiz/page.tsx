@@ -25,7 +25,8 @@ export default async function Ürünlerimiz() {
             <Card
               key={product.id}
               id={product.id}
-              imageSrc={product.image}
+              collectionId={product.collectionId}
+              image={product.image}
               title={product.name}
               details={product.details}
               onAddToCartClick={() => handleAddToCart(product.id)}

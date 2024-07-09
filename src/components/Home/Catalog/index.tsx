@@ -8,7 +8,7 @@ export default async function Catalog() {
   });
 
   return (
-    <div className="flex flex-col gap-4 font-bold">
+    <div className="flex flex-col gap-4">
       <Line title="Katalog" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {records.map((record) => (
@@ -18,7 +18,7 @@ export default async function Catalog() {
               alt={record.name}
               className="w-full h-auto"
             />
-            <p>{record.name}</p>
+            <p className="font-bold">{record.name}</p>
           </div>
         ))}
       </div>
