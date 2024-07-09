@@ -2,7 +2,7 @@ import Line from "@/components/Shared/Line";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col gap-4 font-bold">
+    <div className="flex flex-col gap-4">
       <Line title="İletişim" />
       <div className="flex flex-row items-center justify-between mt-8">
         <div className="flex flex-col gap-4 items-center">

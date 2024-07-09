@@ -14,7 +14,9 @@ export default function Home() {
       <About />
       <div className="max-w-[1100px] mx-auto space-y-20">
         <Catalog />
-        <Contact />
+        <div id="contact-section">
+          <Contact />
+        </div>
       </div>
     </div>
   );

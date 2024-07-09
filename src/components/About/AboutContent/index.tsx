@@ -6,7 +6,7 @@ export default function AboutContent() {
       <div className="flex flex-row gap-10 mt-16">
         <div className="flex flex-col gap-7">
           <h1 className="font-bold text-4xl">Neler Yapıyoruz</h1>
-          <p>
+          <p className="font-light">
             Lorem ipsum dolor sit amet consectetur. Sollicitudin etiam ultrices
             laoreet volutpat mi vulputate ipsum augue orci. Odio gravida sed
             venenatis habitant justo posuere ut maecenas id. Nisl ante est

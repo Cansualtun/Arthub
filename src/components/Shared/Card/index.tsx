@@ -9,7 +9,8 @@ interface DetailsProps {
 
 interface CardProps {
   id: string;
-  imageSrc: string;
+  collectionId: string;
+  image: string;
   title: string;
   details: DetailsProps[];
   onAddToCartClick?: () => void;
@@ -17,14 +18,19 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   id,
-  imageSrc,
+  collectionId,
+  image,
   title,
   details,
   onAddToCartClick,
 }) => {
   return (
     <div className="flex flex-col gap-6 items-center">
-      <img src={imageSrc} alt={title} />
+      <img
+        src={`https://api.pixem.org/api/files/${collectionId}/${id}/${image}`}
+        alt={title}
+        className="w-full h-auto"
+      />
       <p className="font-bold">{title}</p>
       <img src="/assets/icons/line.svg" alt="line" />
       {details?.map((item) => (
@@ -33,7 +39,7 @@ const Card: React.FC<CardProps> = ({
         </p>
       ))}
       <div className="flex flex-row gap-6">
-        <Link href={`/product/${id}`}>
+        <Link href={`/urunlerimiz/${id}`}>
           <button
             type="button"
             onClick={() => {
