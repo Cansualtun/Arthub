@@ -3,6 +3,9 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import BaseProvider from "@/components/Provider/BaseProvider";
+import { CartProvider } from "@/context/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Art Hub",
@@ -11,16 +14,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="h-full">
       <body className="flex flex-col min-h-screen">
         <BaseProvider>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
+          <CartProvider>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <ToastContainer />
+          </CartProvider>
         </BaseProvider>
       </body>
     </html>

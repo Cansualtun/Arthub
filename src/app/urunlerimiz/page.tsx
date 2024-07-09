@@ -1,19 +1,32 @@
-"use client";
-
-import React from "react";
-import Banner from "@/components/Shared/Banner";
-import Line from "@/components/Shared/Line";
-import Card from "@/components/Shared/Card";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import Banner from '@/components/Shared/Banner';
+import Line from '@/components/Shared/Line';
+import Card from '@/components/Shared/Card';
 import PocketBase from 'pocketbase';
+import { useCart } from '@/context/CartContext';
 
-export default async function Ürünlerimiz() {
-  const pb = new PocketBase('https://api.pixem.org');
+export default function Ürünlerimiz() {
+  const [products, setProducts] = useState<any[]>([]);
+  const { addToCart } = useCart();
 
-  const records = await pb.collection('ozkamci_urun').getFullList({
-    sort: '-created',
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      const pb = new PocketBase('https://api.pixem.org');
+      const records = await pb.collection('ozkamci_urun').getFullList({
+        sort: '-created',
+      });
+      setProducts(records);
+      console.log(records, 'test');
+    };
+    fetchData();
+  }, []);
 
-  console.log(records, "test");
+  const handleAddToCart = (product: any) => {
+    addToCart(product);
+    toast.success('Ürün sepete eklendi!');
+  };
 
   return (
     <div className="flex gap-24 flex-col">
@@ -21,7 +34,7 @@ export default async function Ürünlerimiz() {
       <Line title="Ürünlerimiz" />
       <div className="max-w-[1100px] mx-auto space-y-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {records.map((product) => (
+          {products.map((product) => (
             <Card
               key={product.id}
               id={product.id}
@@ -29,17 +42,11 @@ export default async function Ürünlerimiz() {
               image={product.image}
               title={product.name}
               details={product.details}
-              onAddToCartClick={() => handleAddToCart(product.id)}
+              onAddToCartClick={() => handleAddToCart(product)}
             />
           ))}
         </div>
       </div>
     </div>
   );
-
-  function handleAddToCart(productId:any) {
-    // Add to cart logic here
-    console.log(`Add product with ID ${productId} to cart`);
-  }
 }
-

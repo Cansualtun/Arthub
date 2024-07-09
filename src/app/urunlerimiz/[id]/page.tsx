@@ -1,7 +1,7 @@
-import React from 'react';
-import PocketBase from 'pocketbase';
-import { notFound } from 'next/navigation';
-import ImageGallery from '@/components/Products/ImageGallery';
+import React from "react";
+import PocketBase from "pocketbase";
+import { notFound } from "next/navigation";
+import ImageGallery from "@/components/Products/ImageGallery";
 
 type ProductProps = {
   params: {
@@ -11,11 +11,11 @@ type ProductProps = {
 
 const SingleProduct = async ({ params }: ProductProps) => {
   const { id } = params;
-  const pb = new PocketBase('https://api.pixem.org');
+  const pb = new PocketBase("https://api.pixem.org");
 
   let product;
   try {
-    product = await pb.collection('ozkamci_urun').getOne(id);
+    product = await pb.collection("ozkamci_urun").getOne(id);
   } catch (error) {
     console.error(error);
     notFound();
@@ -32,12 +32,30 @@ const SingleProduct = async ({ params }: ProductProps) => {
   return (
     <div>
       <div className="bg-primary-main h-28 flex items-center">
-        <h1 className="text-white text-2xl ml-20 font-bold">
-          {product.name}
-        </h1>
+        <h1 className="text-3xl ml-40 font-bold text-black">{product.name}</h1>
       </div>
       <div className="flex flex-col gap-10 ml-40 mt-10">
-        <ImageGallery image={mainImage} images={otherImages} />
+        <div className="flex flex-row gap-16">
+          <ImageGallery image={mainImage} images={otherImages} />
+          <div>
+            <p className="text-3xl font-bold text-black">{product.name}</p>
+          </div>
+        </div>
+        <div className="flex flex-row">
+          <div className="w-[510px]">
+            <p className="text-3xl font-bold text-black">Detaylı Özellikler</p>
+            <ul>
+              {product.details.map((item: any) => (
+                <li className="border-b border-gray-300 py-2" key={item.key}>
+                  {item.key}: {item.value}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="ml-96">
+            <img src="/assets/images/cubics.svg" />
+          </div>
+        </div>
       </div>
     </div>
   );

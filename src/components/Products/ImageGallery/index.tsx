@@ -26,14 +26,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ image, images }) => {
           alt="main"
         />
       </div>
-      <div className="flex flex-row gap-4 mt-4">
+      <div className="flex flex-row gap-4 mt-2">
         {images?.map((image, index) => (
           <Image
             key={index}
             src={image}
-            className="w-20 h-20 rounded-md cursor-pointer"
-            height={100}
-            width={100}
+            className="w-28 h-20 rounded-md cursor-pointer"
+            height={150}
+            width={150}
             alt={`thumbnail-${index}`}
             onClick={() => handleImageClick(image)}
           />
