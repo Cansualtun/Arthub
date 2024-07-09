@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
+import BaseProvider from "@/components/Provider/BaseProvider";
 
 export const metadata: Metadata = {
   title: "Art Hub",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <BaseProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </BaseProvider>
       </body>
     </html>
   );

@@ -3,10 +3,10 @@ import PocketBase from 'pocketbase';
 
 export default async function Catalog() {
   const pb = new PocketBase('https://api.pixem.org');
-
   const records = await pb.collection('ozkamci_katalog').getFullList({
     sort: '-created',
   });
+
   return (
     <div className="flex flex-col gap-4 font-bold">
       <Line title="Katalog" />
