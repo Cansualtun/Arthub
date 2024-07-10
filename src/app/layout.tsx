@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import BaseProvider from "@/components/Provider/BaseProvider";
-import { CartProvider } from "@/context/CartContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,12 +20,10 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className="flex flex-col min-h-screen">
         <BaseProvider>
-          <CartProvider>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-            <ToastContainer />
-          </CartProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+          <ToastContainer />
         </BaseProvider>
       </body>
     </html>

@@ -5,11 +5,10 @@ import Banner from '@/components/Shared/Banner';
 import Line from '@/components/Shared/Line';
 import Card from '@/components/Shared/Card';
 import PocketBase from 'pocketbase';
-import { useCart } from '@/context/CartContext';
+import Cookies from 'js-cookie';
 
 export default function Ürünlerimiz() {
   const [products, setProducts] = useState<any[]>([]);
-  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +23,10 @@ export default function Ürünlerimiz() {
   }, []);
 
   const handleAddToCart = (product: any) => {
-    addToCart(product);
+    const cartItems = Cookies.get('cartItems');
+    const parsedCartItems = cartItems ? JSON.parse(cartItems) : [];
+    parsedCartItems.push(product);
+    Cookies.set('cartItems', JSON.stringify(parsedCartItems), { expires: 7 });
     toast.success('Ürün sepete eklendi!');
   };
 

@@ -1,9 +1,24 @@
-'use client';
-import React from 'react';
-import { useCart } from '@/context/CartContext';
+"use client";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
-const CartList: React.FC = () => {
-  const { cartItems, removeFromCart } = useCart();
+export default function CartList() {
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    const savedItems = Cookies.get("cartItems");
+    if (savedItems) {
+      setCartItems(JSON.parse(savedItems));
+    }
+  }, []);
+
+  const handleRemoveFromCart = (productId: string) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== productId);
+    setCartItems(updatedCartItems);
+    toast.success("Ürün başarıyla sepetten çıkarıldı!")
+    Cookies.set("cartItems", JSON.stringify(updatedCartItems), { expires: 7 });
+  };
 
   return (
     <div className="flex flex-col gap-6 w-[400px]">
@@ -25,13 +40,11 @@ const CartList: React.FC = () => {
             <img
               src="/assets/icons/delete.svg"
               alt="delete"
-              onClick={() => removeFromCart(item.id)}
+              onClick={() => handleRemoveFromCart(item.id)}
             />
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default CartList;
+}
