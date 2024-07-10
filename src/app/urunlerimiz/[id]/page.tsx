@@ -29,6 +29,9 @@ const SingleProduct = async ({ params }: ProductProps) => {
     `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.images[3]}`,
   ];
 
+  // Verilen data
+  const tags = ["20 ml", "BPE", "İlaç"];
+
   return (
     <div>
       <div className="bg-primary-main h-28 flex items-center">
@@ -39,6 +42,13 @@ const SingleProduct = async ({ params }: ProductProps) => {
           <ImageGallery image={mainImage} images={otherImages} />
           <div>
             <p className="text-3xl font-bold text-black">{product.name}</p>
+            <div className="text-xl text-black mt-8">
+              {tags.map((tag, index) => (
+                <span key={index} className="mr-6 bg-primary-main rounded-md p-2">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
         <div className="flex flex-row">
