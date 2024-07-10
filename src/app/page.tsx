@@ -1,9 +1,23 @@
+"use client";
 import About from "@/components/Home/About";
 import Catalog from "@/components/Home/Catalog";
 import Contact from "@/components/Home/Contact";
 import Banner from "@/components/Shared/Banner";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const scrollToContact = searchParams.get("scrollToContact");
+    if (scrollToContact) {
+      document.querySelector("#contact-section")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [searchParams]);
+
   return (
     <div>
       <Banner

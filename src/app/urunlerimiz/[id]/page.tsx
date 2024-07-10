@@ -16,7 +16,7 @@ const SingleProduct = async ({ params }: ProductProps) => {
   let product;
   try {
     product = await pb.collection("ozkamci_urun").getOne(id);
-    console.log(product,"cans")
+    console.log(product)
   } catch (error) {
     console.error(error);
     notFound();
@@ -42,7 +42,7 @@ const SingleProduct = async ({ params }: ProductProps) => {
           <div>
             <p className="text-3xl font-bold text-black">{product.name}</p>
             <div className="text-xl text-black mt-8">
-              {product?.tag?.map((tag:any, index:any) => (
+              {product?.tag?.tag?.map((tag:any, index:any) => (
                 <span key={index} className="mr-6 bg-primary-main rounded-md p-2">
                   {tag}
                 </span>
