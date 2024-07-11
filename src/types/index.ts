@@ -11,4 +11,17 @@ export interface IBaseApiResponse {
     error: string;
     errorMessage: string;
   }
-  
+  export interface Product {
+    id: string;
+    collectionId: string;
+    image: string;
+    images: string[];
+    name: string;
+    tag?: {
+      tag: string[];
+    };
+    details: {
+      key: string;
+      value: string;
+    }[];
+  }

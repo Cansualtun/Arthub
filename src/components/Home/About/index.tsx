@@ -14,7 +14,8 @@ export default function About() {
       <div className="w-full h-[236px] bg-primary-main absolute top-1/2 transform -translate-y-1/2"></div>
       <div className="relative max-w-6xl mx-auto p-4 z-10 flex flex-col md:flex-row items-start md:space-x-8">
         <div className="text-left md:w-1/2 p-4 space-y-6">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-4xl 
+          ">
             Öz Kamçı <br /> Plastik ile Kalite <br /> Senin Elinde!
           </h2>
           <p className="text-md">
