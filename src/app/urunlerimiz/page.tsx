@@ -1,35 +1,35 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import Banner from '@/components/Shared/Banner';
-import Line from '@/components/Shared/Line';
-import Card from '@/components/Shared/Card';
-import PocketBase from 'pocketbase';
-import Cookies from 'js-cookie';
+"use client";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import Banner from "@/components/Shared/Banner";
+import Line from "@/components/Shared/Line";
+import Card from "@/components/Shared/Card";
+import PocketBase from "pocketbase";
+import Cookies from "js-cookie";
 
 export default function Ürünlerimiz() {
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const pb = new PocketBase('https://api.pixem.org');
-      const records = await pb.collection('ozkamci_urun').getFullList({
-        sort: '-created',
+      const pb = new PocketBase("https://api.pixem.org");
+      const records = await pb.collection("ozkamci_urun").getFullList({
+        sort: "-created",
       });
       setProducts(records);
-      console.log(records, 'test');
+      console.log(records, "test");
     };
     fetchData();
   }, []);
 
   const handleAddToCart = (product: any) => {
-    const cartItems = Cookies.get('cartItems');
+    const cartItems = Cookies.get("cartItems");
     const parsedCartItems = cartItems ? JSON.parse(cartItems) : [];
     parsedCartItems.push(product);
-    Cookies.set('cartItems', JSON.stringify(parsedCartItems), { expires: 7 });
-    toast.success('Ürün sepete eklendi!');
+    Cookies.set("cartItems", JSON.stringify(parsedCartItems), { expires: 7 });
+    toast.success("Ürün sepete eklendi!");
   };
-
+  
   return (
     <div className="flex gap-24 flex-col">
       <Banner imagePath="/assets/images/hakkimizda.svg" title="ÜRÜNLERİMİZ" />
