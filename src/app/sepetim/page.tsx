@@ -1,5 +1,6 @@
 import CartList from "@/components/Cart/CartList";
 import ContactForm from "@/components/Cart/Contact";
+import Head from "next/head";
 
 export default function Sepetim() {
   return (

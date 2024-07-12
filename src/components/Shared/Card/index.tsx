@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface DetailsProps {
   key: string;
@@ -25,7 +26,13 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-6 items-center">
-      <img src={`https://api.pixem.org/api/files/${collectionId}/${id}/${image}`} alt={title} className="w-full h-auto" />
+      <Image
+        src={`https://api.pixem.org/api/files/${collectionId}/${id}/${image}`}
+        alt={title}
+        className="w-full h-auto"
+        width={200}
+        height={200}
+      />
       <p className="font-bold">{title}</p>
       <img src="/assets/icons/line.svg" alt="line" />
       {details?.map((item, index) => (

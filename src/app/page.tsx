@@ -3,6 +3,7 @@ import About from "@/components/Home/About";
 import Catalog from "@/components/Home/Catalog";
 import Contact from "@/components/Home/Contact";
 import Banner from "@/components/Shared/Banner";
+import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
@@ -20,6 +21,9 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Home</title>
+      </Head>
       <Banner
         imagePath="/assets/images/homebanner.svg"
         title="HOŞGELDİNİZ"

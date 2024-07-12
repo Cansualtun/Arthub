@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function CartList() {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -30,9 +31,11 @@ export default function CartList() {
       <div className="flex flex-col gap-4">
         {cartItems.map((item) => (
           <div className="flex flex-row gap-16 items-center m-4" key={item.id}>
-            <img
+            <Image
               src={`https://api.pixem.org/api/files/${item.collectionId}/${item.id}/${item.image}`}
               className="w-16 h-12"
+              width={200}
+              height={200}
               alt={item.name}
             />
             <p>{item.name}</p>
