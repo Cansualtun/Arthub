@@ -60,7 +60,7 @@ const ContactForm = () => {
         });
         if (response.ok) {
           alert("Form submitted successfully!");
-          Cookies.remove("cartItems"); // Cookie'yi sil
+          Cookies.remove("cartItems"); 
           resetForm();
         } else {
           alert("Failed to submit the form");

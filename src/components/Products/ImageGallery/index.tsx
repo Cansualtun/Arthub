@@ -5,7 +5,7 @@ import Image from "next/image";
 
 type ImageGalleryProps = {
   image: string;
-  images: string[];
+  images?: string[];
 };
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ image, images }) => {

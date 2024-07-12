@@ -1,7 +1,3 @@
-export default function Katalog () {
-    return (
-        <div>
-            cans
-        </div>
-    )
+export default function Katalog() {
+  return <div></div>;
 }

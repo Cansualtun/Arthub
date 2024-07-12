@@ -25,3 +25,13 @@ export interface IBaseApiResponse {
       value: string;
     }[];
   }
+  export interface Catalog {
+    collectionId: string
+    collectionName: string
+    created: string
+    id: string
+    image: string
+    name: string
+    updated: string
+  }
+  
