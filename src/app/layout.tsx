@@ -5,6 +5,8 @@ import Footer from "@/components/Layout/Footer";
 import BaseProvider from "@/components/Provider/BaseProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const metadata: Metadata = {
   title: "Art Hub",

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.pixem.org'], // Add your external image source here
+    domains: ['api.pixem.org'], 
   },
   experimental: {
     missingSuspenseWithCSRBailout: false,

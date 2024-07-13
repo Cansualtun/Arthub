@@ -9,27 +9,44 @@ type ProductProps = {
   };
 };
 
+type Product = {
+  id: string;
+  collectionId: string;
+  name: string;
+  image?: string;
+  images?: string[];
+  tag?: {
+    tag?: string[];
+  };
+  item: {
+    items: { key: string; value: string }[];
+  };
+  details: { key: string; value: string }[];
+};
+
 const SingleProduct = async ({ params }: ProductProps) => {
   const { id } = params;
   const pb = new PocketBase("https://api.pixem.org");
 
-  let product;
+  let product: Product;
   try {
-    product = await pb.collection("ozkamci_urun").getOne(id);
-    console.log(product)
+    product = (await pb.collection("ozkamci_urun").getOne(id)) as Product;
+    console.log(product);
   } catch (error) {
     console.error(error);
     notFound();
   }
 
-  const mainImage = `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.image}`;
-  const otherImages = [
-    `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.images[0]}`,
-    `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.images[1]}`,
-    `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.images[2]}`,
-    `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.images[3]}`,
-  ];
+  const mainImage = product.image
+    ? `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.image}`
+    : null;
 
+  const otherImages = product.images
+    ? product.images.map(
+        (img: string) =>
+          `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${img}`
+      )
+    : [];
 
   return (
     <div>
@@ -38,15 +55,30 @@ const SingleProduct = async ({ params }: ProductProps) => {
       </div>
       <div className="flex flex-col gap-10 ml-40 mt-10">
         <div className="flex flex-row gap-16">
-          <ImageGallery image={mainImage} images={otherImages} />
+          {mainImage ? (
+            <ImageGallery image={mainImage} images={otherImages} />
+          ) : (
+            <div>No main image available</div>
+          )}
           <div>
             <p className="text-3xl font-bold text-black">{product.name}</p>
             <div className="text-xl text-black mt-8">
-              {product?.tag?.tag?.map((tag:any, index:any) => (
-                <span key={index} className="mr-6 bg-primary-main rounded-md p-2">
+              {product?.tag?.tag?.map((tag: any, index: any) => (
+                <span
+                  key={index}
+                  className="mr-6 bg-primary-main rounded-md p-2"
+                >
                   {tag}
                 </span>
               ))}
+              <ul className="mt-2">
+                {product.item.items.map((item: any) => (
+                  <li className="py-2 flex flex-row gap-2" key={item.key}>
+                    <img src="/assets/icons/listcheck.svg" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

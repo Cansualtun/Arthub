@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const ContactForm = () => {
   const [cookieProducts, setCookieProducts] = useState([]);
@@ -37,7 +38,7 @@ const ContactForm = () => {
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       const payload = {
-        username: "altuncansu98@gmail.com",
+        username: "ozkamci",
         password: "ozkamci123!!",
         data: {
           ad: values.firstName,
@@ -51,7 +52,7 @@ const ContactForm = () => {
       };
 
       try {
-        const response = await fetch("https://send.pixem.org/send", {
+        const response = await fetch("http://send.pixem.org/send", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -59,8 +60,8 @@ const ContactForm = () => {
           body: JSON.stringify(payload),
         });
         if (response.ok) {
-          alert("Form submitted successfully!");
-          Cookies.remove("cartItems"); 
+          toast.success("Siparişiniz iletildi! Sizinle iletişime geçilecek");
+          Cookies.remove("cartItems");
           resetForm();
         } else {
           alert("Failed to submit the form");

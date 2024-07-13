@@ -6,6 +6,7 @@ import Line from "@/components/Shared/Line";
 import Card from "@/components/Shared/Card";
 import PocketBase from "pocketbase";
 import Cookies from "js-cookie";
+import SubBanner from "@/components/Shared/SubBanner";
 
 export default function Ürünlerimiz() {
   const [products, setProducts] = useState<any[]>([]);
@@ -32,7 +33,7 @@ export default function Ürünlerimiz() {
   
   return (
     <div className="flex gap-24 flex-col">
-      <Banner imagePath="/assets/images/hakkimizda.svg" title="ÜRÜNLERİMİZ" />
+      <SubBanner imagePath="/assets/images/hakkimizda.svg" title="ÜRÜNLERİMİZ" />
       <Line title="Ürünlerimiz" />
       <div className="max-w-[1100px] mx-auto space-y-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

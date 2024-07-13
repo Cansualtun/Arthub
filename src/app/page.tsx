@@ -2,13 +2,16 @@
 import About from "@/components/Home/About";
 import Catalog from "@/components/Home/Catalog";
 import Contact from "@/components/Home/Contact";
-import Banner from "@/components/Shared/Banner";
 import { Suspense } from "react";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import BannerSlider from "@/components/Shared/Banner";
+import banners from "@/data";
 
 export default function Home() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const scrollToContact = searchParams.get("scrollToContact");
@@ -22,11 +25,7 @@ export default function Home() {
   return (
     <div>
       <Suspense>
-        <Banner
-          imagePath="/assets/images/homebanner.svg"
-          title="HOŞGELDİNİZ"
-          description="Lorem ipsum dolor sit amet consectetur. Volutpat consequat ut adipiscing sed curabitur. Et condimentum habitant et rhoncus cursus ut mi. Viverra hendrerit faucibus cursus vulputate ornare curabitur lorem euismod purus. Vitae neque ut sed quis mi est integer cursus egestas."
-        />
+        <BannerSlider banners={banners} />
         <About />
         <div className="max-w-[1100px] mx-auto space-y-20">
           <Catalog />
