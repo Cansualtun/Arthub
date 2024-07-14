@@ -23,7 +23,7 @@ const CatalogProduct = async ({ params }: ProductProps) => {
   }
 
   const mainImage = `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${product.image}`;
-
+  console.log(product , "can")
   return (
     <div>
       <div className="bg-primary-main h-28 flex items-center">

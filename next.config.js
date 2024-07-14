@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api.pixem.org'], 
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.pixem.org",
+        pathname: "/**",
+      },
+    ],
   },
   experimental: {
     missingSuspenseWithCSRBailout: false,

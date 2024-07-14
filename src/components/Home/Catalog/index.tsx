@@ -1,4 +1,3 @@
-"use client";
 import Line from "@/components/Shared/Line";
 import PocketBase from "pocketbase";
 import Link from "next/link";

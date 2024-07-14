@@ -5,8 +5,16 @@ import * as Yup from "yup";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
+// Ürün tipi tanımlama
+type Product = {
+  id: string;
+  name: string;
+  collectionId: string;
+  image: string;
+};
+
 const ContactForm = () => {
-  const [cookieProducts, setCookieProducts] = useState([]);
+  const [cookieProducts, setCookieProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const productsFromCookie = Cookies.get("cartItems");
@@ -37,6 +45,12 @@ const ContactForm = () => {
       message: Yup.string().required("Required"),
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      // Cookie ürünlerini istenen formata dönüştürme
+      const formattedProducts = cookieProducts.map((product) => ({
+        ad: product.name,
+        miktar: 1, // Ürün miktarını buradan ayarlayabilirsiniz
+      }));
+
       const payload = {
         username: "ozkamci",
         password: "ozkamci123!!",
@@ -47,7 +61,7 @@ const ContactForm = () => {
           mail: values.email,
           tel: values.phone,
           mesaj: values.message,
-          urunler: cookieProducts,
+          urunler: formattedProducts,
         },
       };
 
@@ -61,14 +75,20 @@ const ContactForm = () => {
         });
         if (response.ok) {
           toast.success("Siparişiniz iletildi! Sizinle iletişime geçilecek");
-          Cookies.remove("cartItems");
-          resetForm();
+
+          // 3 saniye bekleyip sayfayı yenile
+          setTimeout(() => {
+            Cookies.remove("cartItems");
+            setCookieProducts([]);
+            resetForm();
+            window.location.reload();
+          }, 3000);
         } else {
-          alert("Failed to submit the form");
+          toast.error("Form gönderilemedi. Lütfen tekrar deneyin.");
         }
       } catch (error) {
         console.error("Error submitting form", error);
-        alert("An error occurred");
+        toast.error("Bir hata oluştu. Lütfen tekrar deneyin.");
       } finally {
         setSubmitting(false);
       }

@@ -15,11 +15,12 @@ type Product = {
   name: string;
   image?: string;
   images?: string[];
+  cargo: { [key: string]: string | number };
   tag?: {
     tag?: string[];
   };
   item: {
-    items: { key: string; value: string }[];
+    items: string[];
   };
   details: { key: string; value: string }[];
 };
@@ -48,6 +49,13 @@ const SingleProduct = async ({ params }: ProductProps) => {
       )
     : [];
 
+  // Koli Ebatları formatında gösterilecek stringi oluşturmak
+  const cargoDimensions = {
+    Boy: product.cargo["Boy"],
+    En: product.cargo["En"],
+    Yükseklik: product.cargo["Yükseklik"],
+  };
+
   return (
     <div>
       <div className="bg-primary-main h-28 flex items-center">
@@ -72,8 +80,8 @@ const SingleProduct = async ({ params }: ProductProps) => {
                 </span>
               ))}
               <ul className="mt-2">
-                {product.item.items.map((item: any) => (
-                  <li className="py-2 flex flex-row gap-2" key={item.key}>
+                {product.item.items.map((item: any, index: any) => (
+                  <li className="py-2 flex flex-row gap-2" key={index}>
                     <img src="/assets/icons/listcheck.svg" />
                     {item}
                   </li>
@@ -82,7 +90,7 @@ const SingleProduct = async ({ params }: ProductProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-96">
           <div className="w-[510px]">
             <p className="text-3xl font-bold text-black">Detaylı Özellikler</p>
             <ul>
@@ -92,9 +100,42 @@ const SingleProduct = async ({ params }: ProductProps) => {
                 </li>
               ))}
             </ul>
+            <ul>
+              <li className="py-2 flex flex-row gap-2">
+                Koli Ebatları:
+                <span>
+                  {cargoDimensions.Boy} x {cargoDimensions.En} x
+                  {cargoDimensions.Yükseklik}
+                </span>
+              </li>
+            </ul>
           </div>
-          <div className="ml-96">
-            <img src="/assets/images/cubics.svg" />
+          <div className="relative w-72 h-72 bottom-20">
+            <img
+              src="/assets/images/cubics.svg"
+              alt="Cube"
+              className="w-full h-full"
+            />
+            <div className="absolute top-0 left-0 w-full h-full">
+              <span
+                className="absolute top-[-2%] left-[60%] transform -translate-x-1/2 text-lg text-black"
+                style={{ transform: "rotate(33deg)" }}
+              >
+                {cargoDimensions.Boy} cm
+              </span>
+              <span
+                className="absolute top-[3%] left-[10%] transform -translate-x-1/2 text-lg text-black"
+                style={{ transform: "rotate(-33deg)" }}
+              >
+                {cargoDimensions.En} cm
+              </span>
+              <span
+                className="absolute top-[50%] right-[-10%] transform -translate-y-1/2 text-lg text-black"
+                style={{ transform: "rotate(90deg)" }}
+              >
+                {cargoDimensions.Yükseklik} cm
+              </span>
+            </div>
           </div>
         </div>
       </div>
