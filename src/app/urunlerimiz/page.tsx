@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import Banner from "@/components/Shared/Banner";
 import Line from "@/components/Shared/Line";
 import Card from "@/components/Shared/Card";
 import PocketBase from "pocketbase";
