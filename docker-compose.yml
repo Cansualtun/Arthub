@@ -8,5 +8,4 @@ services:
     restart: unless-stopped
     ports:
       - 3310:3000
-    volumes:
-      - /opt/ozkamci/web:/web
+      
