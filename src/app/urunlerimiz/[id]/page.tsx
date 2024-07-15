@@ -48,12 +48,12 @@ const SingleProduct = async ({ params }: ProductProps) => {
           `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${img}`
       )
     : [];
-
+  console.log(product)
   // Koli Ebatları formatında gösterilecek stringi oluşturmak
   const cargoDimensions = {
-    Boy: product.cargo["Boy"],
-    En: product.cargo["En"],
-    Yükseklik: product.cargo["Yükseklik"],
+    Boy: product?.cargo?.Boy || "",
+    En: product?.cargo?.En || "",
+    Yükseklik: product?.cargo?.Yükseklik || "",
   };
 
   return (

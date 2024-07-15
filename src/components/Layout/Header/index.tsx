@@ -14,7 +14,7 @@ export default function Header() {
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto">
-          <a className="flex items-center">
+          <a href="https://ozkamci.com.tr" className="flex items-center">
             <img
               src="/assets/arthublogo.svg"
               className="mr-3 h-12 sm:h-9"
@@ -27,18 +27,6 @@ export default function Header() {
               className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
             >
               <img src="/assets/socialmedia/facebook.svg" />
-            </a>
-            <a
-              href="#"
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >
-              <img src="/assets/socialmedia/twitter.svg" />
-            </a>
-            <a
-              href="#"
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >
-              <img src="/assets/socialmedia/google.svg" />
             </a>
             <a
               href="https://www.instagram.com/estaone_plastik_ambalaj?igsh=MWNsYnp4aWE0aWR6ag=="

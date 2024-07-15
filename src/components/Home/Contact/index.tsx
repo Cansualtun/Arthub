@@ -13,8 +13,8 @@ export default function Contact() {
           />
           <p>Adres</p>
           <p>
-            Beylikdüzü OSB 5. Cd. Birlik Plaza No:14 <br /> Kat:8 Daire:66, 3531
-            Beylikdüzü/İstanbul
+            Aydın Plastikçiler Sitesi 1539. Sok No:22 <br/> İvedik Organize Sanayi
+            Ankara
           </p>
         </div>
         <div className="flex flex-col gap-4 items-center">
@@ -24,9 +24,7 @@ export default function Contact() {
             className="w-20 h-20"
           />
           <p>Telefon Numaralarımız</p>
-          <p>
-            0 212 552 69 98 <br /> 0599 954 12 25
-          </p>
+          <p>0 312 395 11 79</p>
         </div>
         <div className="flex flex-col gap-4 items-center">
           <img
@@ -35,9 +33,7 @@ export default function Contact() {
             className="w-20 h-20"
           />
           <p>E-Posta</p>
-          <p>
-            info@orgafe.com <br /> destek@orgafe.com
-          </p>
+          <p>info@ozkamci.com.tr</p>
         </div>
       </div>
     </div>
