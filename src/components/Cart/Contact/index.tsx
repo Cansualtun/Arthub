@@ -45,10 +45,9 @@ const ContactForm = () => {
       message: Yup.string().required("Required"),
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      // Cookie ürünlerini istenen formata dönüştürme
       const formattedProducts = cookieProducts.map((product) => ({
         ad: product.name,
-        miktar: 1, // Ürün miktarını buradan ayarlayabilirsiniz
+        miktar: 1, 
       }));
 
       const payload = {
@@ -75,8 +74,6 @@ const ContactForm = () => {
         });
         if (response.ok) {
           toast.success("Siparişiniz iletildi! Sizinle iletişime geçilecek");
-
-          // 3 saniye bekleyip sayfayı yenile
           setTimeout(() => {
             Cookies.remove("cartItems");
             setCookieProducts([]);
@@ -98,9 +95,9 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex flex-col gap-6 w-[400px]"
+      className="flex flex-col gap-6 w-[400px] !p-4 md:p-0"
     >
-      <div className="h-24 bg-primary-main rounded-md">
+      <div className="h-24 bg-primary-main rounded-md ">
         <p className="text-3xl flex items-center justify-center h-full">
           İLETİŞİM BİLGİLERİ
         </p>

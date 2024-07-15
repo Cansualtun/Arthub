@@ -20,11 +20,10 @@ export default function Home() {
         behavior: "smooth",
       });
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <div>
-      <Suspense>
         <BannerSlider banners={banners} />
         <About />
         <div className="max-w-[1100px] mx-auto space-y-20">
@@ -33,7 +32,6 @@ export default function Home() {
             <Contact />
           </div>
         </div>
-      </Suspense>
     </div>
   );
 }
