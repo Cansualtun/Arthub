@@ -65,7 +65,7 @@ const ContactForm = () => {
       };
 
       try {
-        const response = await fetch("http://send.pixem.org/send", {
+        const response = await fetch("https://send.pixem.org/send", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
