@@ -48,7 +48,7 @@ const SingleProduct = async ({ params }: ProductProps) => {
           `https://api.pixem.org/api/files/${product.collectionId}/${product.id}/${img}`
       )
     : [];
-  console.log(product)
+  console.log(product);
   // Koli Ebatları formatında gösterilecek stringi oluşturmak
   const cargoDimensions = {
     Boy: product?.cargo?.Boy || "",
@@ -79,38 +79,37 @@ const SingleProduct = async ({ params }: ProductProps) => {
                   {tag}
                 </span>
               ))}
-              <ul className="mt-2">
-                {product.item.items.map((item: any, index: any) => (
-                  <li className="py-2 flex flex-row gap-2" key={index}>
-                    <img src="/assets/icons/listcheck.svg" />
-                    {item}
+              <div className="w-[510px]">
+                <p className="text-3xl font-bold text-black mt-4">
+                  Detaylı Özellikler
+                </p>
+                <ul>
+                  {product.details.map((item: any) => (
+                    <li
+                      className="border-b border-gray-300 py-2"
+                      key={item.key}
+                    >
+                      {item.key}: {item.value}
+                    </li>
+                  ))}
+                </ul>
+                <ul>
+                  <li className="py-2 flex flex-row gap-2">
+                    Koli Ebatları:
+                    <span>
+                      {cargoDimensions.Boy} x {cargoDimensions.En} x
+                      {cargoDimensions.Yükseklik}
+                    </span>
                   </li>
-                ))}
-              </ul>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-96">
-          <div className="w-[510px]">
-            <p className="text-3xl font-bold text-black">Detaylı Özellikler</p>
-            <ul>
-              {product.details.map((item: any) => (
-                <li className="border-b border-gray-300 py-2" key={item.key}>
-                  {item.key}: {item.value}
-                </li>
-              ))}
-            </ul>
-            <ul>
-              <li className="py-2 flex flex-row gap-2">
-                Koli Ebatları:
-                <span>
-                  {cargoDimensions.Boy} x {cargoDimensions.En} x
-                  {cargoDimensions.Yükseklik}
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div className="relative w-72 h-72 bottom-20">
+        <div className="flex">
+          <div className="flex-1"/>
+          <div className="flex-1">
+          <div className="relative w-72 h-72">
             <img
               src="/assets/images/cubics.svg"
               alt="Cube"
@@ -136,6 +135,7 @@ const SingleProduct = async ({ params }: ProductProps) => {
                 {cargoDimensions.Yükseklik} cm
               </span>
             </div>
+          </div>
           </div>
         </div>
       </div>
