@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Tooltip } from "react-tooltip"; 
 
 interface DetailsProps {
   key: string;
@@ -25,7 +26,7 @@ const Card: React.FC<CardProps> = ({
   onAddToCartClick,
 }) => {
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="flex flex-col gap-6 items-center border-solid border-2 rounded-md border-primary-main p-4 ">
       <Image
         src={`https://api.pixem.org/api/files/${collectionId}/${id}/${image}`}
         alt={title}
@@ -33,7 +34,19 @@ const Card: React.FC<CardProps> = ({
         width={200}
         height={200}
       />
-      <p className="font-bold">{title}</p>
+      <div className="flex flex-row justify-between w-full p-2 border-none">
+        <p className="font-bold">{title}</p>
+        <div className="relative group">
+          <img
+            className="border-none"
+            src="/assets/icons/usage.svg"
+            alt="usage icon"
+          />
+          <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-700 text-white text-xs rounded-md px-2 py-1">
+             Tooltip notes
+          </span>
+        </div>
+      </div>
       <img src="/assets/icons/line.svg" alt="line" />
       {details?.map((item, index) => (
         <p key={index}>
